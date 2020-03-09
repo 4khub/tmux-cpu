@@ -34,37 +34,6 @@ is_linux_iostat() {
   iostat -c &> /dev/null
 }
 
-calc() {
-      local stdin;
-        read -d '' -u 0 stdin;
-          awk "BEGIN { print $stdin  }";
-          
-}
-
-# is second float bigger?
-fcomp() {
-  awk -v n1=$1 -v n2=$2 'BEGIN {if (n1<n2) exit 0; exit 1}'
-}
-
-cpu_load_status() {
-  local percentage=$1
-  if fcomp 80 $percentage; then
-    echo "high"
-  elif fcomp 30 $percentage && fcomp $percentage 80; then
-    echo "medium"
-  else
-    echo "low"
-  fi
-}
-
-cpus_number() {
-  if is_linux; then
-    nproc
-  else
-    sysctl -n hw.ncpu
-  fi
-}
-
 command_exists() {
   local command="$1"
   command -v "$command" &> /dev/null

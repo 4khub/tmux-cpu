@@ -6,6 +6,19 @@ source "$CURRENT_DIR/helpers.sh"
 
 cpu_percentage_format="%3.1f%%"
 
+# is second float bigger?
+fcomp() {
+  awk -v n1=$1 -v n2=$2 'BEGIN {if (n1<n2) exit 0; exit 1}'
+}
+
+cpus_number() {
+  if is_linux; then
+    nproc
+  else
+    sysctl -n hw.ncpu
+  fi
+}
+
 print_cpu_percentage() {
   cpu_percentage_format=$(get_tmux_option "@cpu_percentage_format" "$cpu_percentage_format")
 

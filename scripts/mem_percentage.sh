@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
-set -u
-set -e
-
-LC_NUMERIC=C
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 source "$CURRENT_DIR/helpers.sh"
 
 mem_percentage_format="%3.1f%%"
+
+calc() {
+    local stdin;
+    read -d '' -u 0 stdin;
+    awk "BEGIN { print $stdin  }";
+}
 
 print_mem() {
   mem_percentage_format=$(get_tmux_option "@mem_percentage_format" "$mem_percentage_format")

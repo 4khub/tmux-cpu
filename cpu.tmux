@@ -6,24 +6,12 @@ source "$CURRENT_DIR/scripts/helpers.sh"
 
 cpu_interpolation=(
   "\#{cpu_percentage}"
-  "\#{cpu_icon}"
-  "\#{cpu_bg_color}"
-  "\#{cpu_fg_color}"
   "\#{gpu_percentage}"
-  "\#{gpu_icon}"
-  "\#{gpu_bg_color}"
-  "\#{gpu_fg_color}"
   "\#{mem_percentage}"
 )
 cpu_commands=(
   "#($CURRENT_DIR/scripts/cpu_percentage.sh)"
-  "#($CURRENT_DIR/scripts/cpu_icon.sh)"
-  "#($CURRENT_DIR/scripts/cpu_bg_color.sh)"
-  "#($CURRENT_DIR/scripts/cpu_fg_color.sh)"
   "#($CURRENT_DIR/scripts/gpu_percentage.sh)"
-  "#($CURRENT_DIR/scripts/gpu_icon.sh)"
-  "#($CURRENT_DIR/scripts/gpu_bg_color.sh)"
-  "#($CURRENT_DIR/scripts/gpu_fg_color.sh)"
   "#($CURRENT_DIR/scripts/mem_percentage.sh)"
 )
 
