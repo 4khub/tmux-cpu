@@ -4,7 +4,7 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source "$CURRENT_DIR/helpers.sh"
 
-gpu_percentage_format="%3.1f%%"
+gpu_percentage_format="%.2f"
 
 print_gpu_percentage() {
   gpu_percentage_format=$(get_tmux_option "@gpu_percentage_format" "$gpu_percentage_format")
@@ -20,7 +20,7 @@ print_gpu_percentage() {
   loads=$(echo "$loads" | sed -nr 's/.*\s([0-9]+)%.*/\1/p')
   gpus=$(echo "$loads" | wc -l)
   load=$(echo "$loads" | awk '{count+=$1} END {print count}')
-  echo "$load $gpus" | awk -v format="$gpu_percentage_format" '{printf format, $1/$2}'
+  echo "$load $gpus" | awk -v format="$gpu_percentage_format" '{printf format, $1/$2/100.0}'
 }
 
 main() {
